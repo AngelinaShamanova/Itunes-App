@@ -13,7 +13,22 @@ class TrackCell: UICollectionViewCell {
     
     //MARK: - Public properties
     static var cellId = "image"
-    var imageView = UIImageView()
+    var imageView: UIImageView = {
+        let img = UIImageView()
+        img.contentMode = .scaleAspectFit
+        img.layer.masksToBounds = false
+        img.layer.shadowColor = UIColor(named: "lightGray")?.cgColor
+        img.layer.shadowOpacity = 3
+        img.layer.shadowRadius = 1.7
+        return img
+    }()
+    var collectionName: UILabel = {
+        let name = UILabel()
+        name.numberOfLines = 0
+        name.textAlignment = .center
+        name.adjustsFontSizeToFitWidth = true
+        return name
+    }()
     
     //MARK: - Override funcs
     override init(frame: CGRect) {
@@ -27,9 +42,17 @@ class TrackCell: UICollectionViewCell {
     //MARK: - Private funcs
     private func configureUI() {
         addSubview(imageView)
-        imageView.contentMode = .scaleAspectFit
+        addSubview(collectionName)
         imageView.snp.makeConstraints { make in
-            make.edges.equalTo(self)
+            make.width.height.equalTo(100)
+            make.top.equalTo(self).offset(5)
+            make.centerX.equalTo(self)
+        }
+        collectionName.snp.makeConstraints { make in
+            make.bottom.equalTo(self).offset(-10)
+            make.leading.equalTo(self).offset(2)
+            make.trailing.equalTo(self).offset(-2)
+            make.height.equalTo(60)
         }
     }
 }
