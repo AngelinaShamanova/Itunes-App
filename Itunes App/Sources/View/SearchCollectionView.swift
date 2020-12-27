@@ -51,7 +51,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellName = tracks[indexPath.item]
         guard let image = cellName.artworkUrl100 else { return }
-        
         let vc = DetailViewController()
         vc.artistName.text = cellName.artistName
         vc.collectionName.text = cellName.collectionName
