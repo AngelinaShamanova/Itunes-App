@@ -12,43 +12,45 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - Private Properties
     private var collectionView: UICollectionView!
     private var timer: Timer?
-    private let viewModel = ViewModel()
+    private let albumViewModel = AlbumViewModel()
     
     // MARK: - Public Properties
-    var tracks = [Album]()
+    var album = [Album]()
     var label = UILabel()
     var searchTextArray = [String]()
     var activityIndicator = UIActivityIndicatorView()
-    let searchController = UISearchController(searchResultsController: nil )
+    let searchController = UISearchController(searchResultsController: nil)
     
     //MARK: - Override funcs
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-//        AppData.shared().storage.searchText?.removeAll()
     }
     
     // MARK: - Collection View Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tracks.count
+        return album.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.cellId, for: indexPath) as! TrackCell
-        guard let trackImage = tracks[indexPath.item].artworkUrl100 else { return cell }
-        cell.collectionName.text = tracks[indexPath.row].collectionName
+        guard let trackImage = album[indexPath.item].artworkUrl100 else { return cell }
+        cell.collectionName.text = album[indexPath.row].collectionName
         cell.imageView.loadImage(url: URL(string: trackImage))
         return cell
     }
     
     //MARK: - Collection View Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let configureCell = tracks[indexPath.item]
+        let configureCell = album[indexPath.item]
         guard let image = configureCell.artworkUrl100 else { return }
         let vc = DetailViewController()
         vc.artistName.text = configureCell.artistName
         vc.collectionName.text = configureCell.collectionName
         vc.imageView.loadImage(url: URL(string: image))
+        vc.collectionId = configureCell.collectionId
+        vc.country = configureCell.country
+        vc.trackCount = configureCell.trackCount
         modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -82,7 +84,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
 }
 
-    //MARK: - UISearchBarDelegate
+//MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -90,23 +92,15 @@ extension SearchViewController: UISearchBarDelegate {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.activityIndicator = self.initLoading()
-            self.viewModel.getAlbums(term: searchText, limit: "10") { data in
+            self.albumViewModel.getAlbums(term: searchText, limit: "10") { [weak self] data in
                 if !data.results.isEmpty {
-                    self.searchTextArray.append(searchText)
-                    AppData.shared().storage.searchText = self.searchTextArray
-                    
-                    print("[!] RESULTS DATA: \(data.results)")
-                    self.tracks = data.results
-                    self.collectionView.reloadData()
-                    self.activityIndicator.stopAnimating()
+                    self?.searchTextArray.append(searchText)
+                    AppData.shared().storage.searchText = self?.searchTextArray
+                    self?.album = data.results
+                    self?.collectionView.reloadData()
                 } else {
-                    print("[!] RESULTS DATA ARE EMPTY")
-                    self.activityIndicator.stopAnimating()
                 }
-                self.activityIndicator.stopAnimating()
-                
-                
-                
+                self?.activityIndicator.stopAnimating()
             }
         })
         

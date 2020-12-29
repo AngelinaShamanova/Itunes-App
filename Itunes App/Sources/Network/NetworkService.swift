@@ -1,5 +1,5 @@
 //
-//  Service.swift
+//  NetworkService.swift
 //  Itunes App
 //
 //  Created by Angelina on 26.12.2020.
@@ -8,26 +8,31 @@
 import Moya
 import RxSwift
 
-enum Service {
+enum NetworkService {
     case getAlbum(term: String, limit: String)
+    case getTrack(collectionId: Int)
 }
 
-extension Service: TargetType {
+extension NetworkService: TargetType {
     
     var baseURL: URL {
-        URL(string: "https://itunes.apple.com/search?")!
+        URL(string: "https://itunes.apple.com/")!
     }
     
     var path: String {
         switch self {
         case .getAlbum(let term, let limit):
-            return "\(term)&entity=album&attribute=albumTerm&\(limit)"
+            return "search/\(term)&entity=album&attribute=albumTerm&\(limit)"
+        case .getTrack(let collectionId):
+            return "lookup/\(collectionId)&entity=song&media=music"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .getAlbum:
+            return .get
+        case .getTrack:
             return .get
         }
     }
@@ -36,6 +41,8 @@ extension Service: TargetType {
         switch self {
         case .getAlbum(let term, let limit):
             return .requestParameters(parameters: ["term" : term, "limit" : limit], encoding: URLEncoding.default)
+        case .getTrack(let collectionId):
+            return .requestParameters(parameters: ["id" : collectionId], encoding: URLEncoding.default)
         }
     }
     

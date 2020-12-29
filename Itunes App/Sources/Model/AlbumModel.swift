@@ -16,13 +16,9 @@ struct Album: Decodable {
     let artistName: String
     let collectionName: String?
     let artworkUrl100: String?
+    let country: String
     let trackCount: Int
-    let collectionID: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case trackCount, artistName, collectionName, artworkUrl100
-        case collectionID = "collectionId"
-    }
+    let collectionId: Int
 }
 
 

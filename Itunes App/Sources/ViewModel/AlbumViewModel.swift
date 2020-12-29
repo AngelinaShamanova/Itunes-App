@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  AlbumViewModel.swift
 //  Itunes App
 //
 //  Created by Angelina on 26.12.2020.
@@ -7,13 +7,13 @@
 
 import Moya
 
-class ViewModel {
+class AlbumViewModel {
     
     // MARK: - Private Properties
-    private let provider = MoyaProvider<Service>(plugins: [NetworkLoggerPlugin()])
+    private let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin()])
     
     // MARK: - Public Properties
-    var tracks: AlbumModel?
+    var albums: AlbumModel?
     
     // MARK: - Public Methods
     func getAlbums(term: String, limit: String, onSuccess: @escaping (AlbumModel)->Void) {
@@ -21,7 +21,7 @@ class ViewModel {
             switch event {
             case let .success(response):
                 if let data = try? response.map(AlbumModel.self) {
-                    self?.tracks = data
+                    self?.albums = data
                     onSuccess(data)
                 }
             case let .error(error):
