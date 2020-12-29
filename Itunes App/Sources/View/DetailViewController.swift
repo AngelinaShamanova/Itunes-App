@@ -106,7 +106,6 @@ class DetailViewController: UIViewController {
             self?.activityIndicator.stopAnimating()
         }
     }
-    
 }
 
 //MARK: - Table View Data Source, Table View Delegate
@@ -118,6 +117,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        cell.selectionStyle = .none
         grabDataFromNet(forCell: cell, index: indexPath)
         return cell
     }
