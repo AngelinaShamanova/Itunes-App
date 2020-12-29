@@ -19,6 +19,7 @@
 		FA5B86F82596C26100D96656 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B86F72596C26100D96656 /* AlbumModel.swift */; };
 		FAA1C144259B739D00ACB59F /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1C143259B739D00ACB59F /* TrackViewModel.swift */; };
 		FAA1C148259B73E100ACB59F /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1C147259B73E100ACB59F /* TrackModel.swift */; };
+		FAA1C17C259BDB6F00ACB59F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1C17B259BDB6F00ACB59F /* TableHeaderView.swift */; };
 		FAD6D2FC2596835B004BDDAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D2FB2596835B004BDDAF /* AppDelegate.swift */; };
 		FAD6D3002596835B004BDDAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D2FF2596835B004BDDAF /* MainViewController.swift */; };
 		FAD6D30825968360004BDDAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD6D30625968360004BDDAF /* LaunchScreen.storyboard */; };
@@ -41,6 +42,7 @@
 		FA5B86F72596C26100D96656 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
 		FAA1C143259B739D00ACB59F /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		FAA1C147259B73E100ACB59F /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		FAA1C17B259BDB6F00ACB59F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		FAD6D2F82596835B004BDDAF /* Itunes App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Itunes App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD6D2FB2596835B004BDDAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD6D2FF2596835B004BDDAF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				FAD6D2FF2596835B004BDDAF /* MainViewController.swift */,
 				FAD6D3182596868D004BDDAF /* SearchCollectionView.swift */,
 				FA2BAED22597783E002A3903 /* DetailViewController.swift */,
+				FAA1C17E259BDB7600ACB59F /* Subview */,
 				FAD6D3152596861C004BDDAF /* HistoryTableViewController.swift */,
 				FA5B86E42596AFD900D96656 /* Cells */,
 				FA5C32E42598CBBB00DE298B /* Custom View */,
@@ -160,6 +163,14 @@
 			children = (
 			);
 			path = "Custom View";
+			sourceTree = "<group>";
+		};
+		FAA1C17E259BDB7600ACB59F /* Subview */ = {
+			isa = PBXGroup;
+			children = (
+				FAA1C17B259BDB6F00ACB59F /* TableHeaderView.swift */,
+			);
+			path = Subview;
 			sourceTree = "<group>";
 		};
 		FAD6D2EF2596835A004BDDAF = {
@@ -306,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA1C17C259BDB6F00ACB59F /* TableHeaderView.swift in Sources */,
 				FA2BAED32597783E002A3903 /* DetailViewController.swift in Sources */,
 				FA06850A259730CA000A6FE5 /* UIViewExtension.swift in Sources */,
 				FAA1C144259B739D00ACB59F /* TrackViewModel.swift in Sources */,

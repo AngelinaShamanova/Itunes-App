@@ -29,6 +29,7 @@ class DetailViewController: UIViewController {
     var trackViewModel = TrackViewModel()
     var track = [Track]()
     var activityIndicator = UIActivityIndicatorView()
+    var head = TableHeaderView()
     
     //MARK: - Override funcs
     override func viewDidLoad() {
@@ -44,14 +45,17 @@ class DetailViewController: UIViewController {
     //MARK: - Private funcs
     private func configureUI() {
         view.backgroundColor = .white
-        view.addSubview(imageView)
-        view.addSubview(collectionName)
-        view.addSubview(artistName)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(pop))
+        navigationItem.leftBarButtonItem?.setBackButtonBackgroundImage(UIImage(named: "back"), for: .normal, barMetrics: .default)
+        head.addSubview(imageView)
+        head.addSubview(collectionName)
+        head.addSubview(artistName)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         tableView.isHidden = true
+        tableView.tableHeaderView = head
         imageView.isHidden = true
         collectionName.isHidden = true
         artistName.isHidden = true
@@ -71,22 +75,23 @@ class DetailViewController: UIViewController {
     private func layoutConstraints() {
         imageView.snp.makeConstraints { make in
             make.width.height.equalTo(100)
-            make.top.equalTo(view).offset(50)
-            make.centerX.equalTo(view)
+            make.top.equalTo(tableView).offset(10)
+            make.centerX.equalTo(head)
         }
         artistName.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(20)
-            make.leading.equalTo(view).offset(20)
-            make.trailing.equalTo(view).offset(-20)
+            make.leading.equalTo(head).offset(20)
+            make.trailing.equalTo(head).offset(-20)
         }
         collectionName.snp.makeConstraints { make in
             make.top.equalTo(artistName.snp.bottom).offset(10)
-            make.leading.equalTo(view).offset(20)
-            make.trailing.equalTo(view).offset(-20)
+            make.leading.equalTo(head).offset(20)
+            make.trailing.equalTo(head).offset(-20)
         }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(collectionName.snp.bottom).offset(10)
-            make.leading.trailing.bottom.equalTo(view)
+//            make.top.equalTo(collectionName.snp.bottom).offset(10)
+//            make.leading.trailing.bottom.equalTo(view)
+            make.edges.equalTo(view)
         }
     }
     
@@ -105,6 +110,10 @@ class DetailViewController: UIViewController {
             self?.artistName.isHidden = false
             self?.activityIndicator.stopAnimating()
         }
+    }
+    
+    @objc private func pop() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

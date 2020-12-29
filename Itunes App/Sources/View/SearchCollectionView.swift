@@ -51,8 +51,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         vc.collectionId = configureCell.collectionId
         vc.country = configureCell.country
         vc.trackCount = configureCell.trackCount
-        modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
+//        modalPresentationStyle = .fullScreen
+//        present(vc, animated: true, completion: nil)
     }
     
     //MARK: - Private funcs
