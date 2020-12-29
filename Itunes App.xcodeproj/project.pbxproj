@@ -20,6 +20,7 @@
 		FAA1C144259B739D00ACB59F /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1C143259B739D00ACB59F /* TrackViewModel.swift */; };
 		FAA1C148259B73E100ACB59F /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1C147259B73E100ACB59F /* TrackModel.swift */; };
 		FAA1C17C259BDB6F00ACB59F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA1C17B259BDB6F00ACB59F /* TableHeaderView.swift */; };
+		FAA1C181259BEC3200ACB59F /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA1C180259BEC3200ACB59F /* back.png */; };
 		FAD6D2FC2596835B004BDDAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D2FB2596835B004BDDAF /* AppDelegate.swift */; };
 		FAD6D3002596835B004BDDAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D2FF2596835B004BDDAF /* MainViewController.swift */; };
 		FAD6D30825968360004BDDAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD6D30625968360004BDDAF /* LaunchScreen.storyboard */; };
@@ -43,6 +44,7 @@
 		FAA1C143259B739D00ACB59F /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		FAA1C147259B73E100ACB59F /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		FAA1C17B259BDB6F00ACB59F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
+		FAA1C180259BEC3200ACB59F /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		FAD6D2F82596835B004BDDAF /* Itunes App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Itunes App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD6D2FB2596835B004BDDAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD6D2FF2596835B004BDDAF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				FA5B86C42596998600D96656 /* Assets.xcassets */,
+				FAA1C180259BEC3200ACB59F /* back.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				FA5B86C52596998600D96656 /* Assets.xcassets in Resources */,
 				FAD6D30825968360004BDDAF /* LaunchScreen.storyboard in Resources */,
+				FAA1C181259BEC3200ACB59F /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

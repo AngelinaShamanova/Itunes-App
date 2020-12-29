@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(pop))
-        navigationItem.leftBarButtonItem?.setBackButtonBackgroundImage(UIImage(named: "back"), for: .normal, barMetrics: .default)
+        navigationItem.leftBarButtonItem?.setBackButtonBackgroundImage(UIImage(named: "back.png"), for: .normal, barMetrics: .defaultPrompt)
         head.addSubview(imageView)
         head.addSubview(collectionName)
         head.addSubview(artistName)
