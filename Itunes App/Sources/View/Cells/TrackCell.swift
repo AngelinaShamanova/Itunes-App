@@ -9,14 +9,13 @@ import UIKit
 
 class TrackCell: UICollectionViewCell {
     
-    //MARK: - Private properties
-    
     //MARK: - Public properties
     static var cellId = "image"
     var imageView: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFit
         img.layer.masksToBounds = false
+        img.layer.cornerRadius = 0.8
         img.layer.shadowColor = UIColor(named: "lightGray")?.cgColor
         img.layer.shadowOpacity = 3
         img.layer.shadowRadius = 1.7

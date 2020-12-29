@@ -9,14 +9,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var imageView = UIImageView()
+    var imageView: UIImageView = {
+        let img = UIImageView()
+        img.layer.masksToBounds = false
+        img.layer.cornerRadius = 0.8
+        img.layer.shadowColor = UIColor(named: "lightGray")?.cgColor
+        img.layer.shadowOpacity = 3
+        img.layer.shadowRadius = 1.7
+        return img
+    }()
     var collectionName = UILabel()
     var artistName = UILabel()
-    var songsTableView = UITableView()
+    var tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     private func configureUI() {
@@ -24,15 +34,17 @@ class DetailViewController: UIViewController {
         view.addSubview(imageView)
         view.addSubview(collectionName)
         view.addSubview(artistName)
-        view.addSubview(songsTableView)
         imageView.contentMode = .scaleAspectFit
-        collectionName.textAlignment = .center
-        collectionName.numberOfLines = 0
-        collectionName.textColor = .gray
-        artistName.textAlignment = .center
-        artistName.numberOfLines = 0
+        setLabels(label: collectionName)
+        setLabels(label: artistName)
         artistName.textColor = .black
         layoutConstraints()
+    }
+    
+    private func setLabels(label: UILabel) {
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = .gray
     }
     
     private func layoutConstraints() {
@@ -51,10 +63,17 @@ class DetailViewController: UIViewController {
             make.leading.equalTo(view).offset(20)
             make.trailing.equalTo(view).offset(-20)
         }
-        songsTableView.snp.makeConstraints { make in
-            make.top.equalTo(collectionName.snp.bottom).offset(10)
-            make.leading.trailing.bottom.equalTo(view)
-        }
     }
 
+}
+
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
 }

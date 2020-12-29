@@ -13,19 +13,19 @@ class ViewModel {
     private let provider = MoyaProvider<Service>(plugins: [NetworkLoggerPlugin()])
     
     // MARK: - Public Properties
-    var tracks: TrackModel?
+    var tracks: AlbumModel?
     
     // MARK: - Public Methods
-    func getCoverTracks(term: String, limit: String, onSuccess: @escaping (TrackModel)->Void) {
-        _ = provider.rx.request(.getCover(term: term, limit: limit)).subscribe { [weak self] event in
+    func getAlbums(term: String, limit: String, onSuccess: @escaping (AlbumModel)->Void) {
+        _ = provider.rx.request(.getAlbum(term: term, limit: limit)).subscribe { [weak self] event in
             switch event {
             case let .success(response):
-                if let data = try? response.map(TrackModel.self) {
+                if let data = try? response.map(AlbumModel.self) {
                     self?.tracks = data
                     onSuccess(data)
                 }
             case let .error(error):
-                print(error)
+                print(error, "SOMETHING GOING WRONG")
             }
         }
     }

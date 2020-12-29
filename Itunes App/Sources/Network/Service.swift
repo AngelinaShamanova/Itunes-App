@@ -9,32 +9,32 @@ import Moya
 import RxSwift
 
 enum Service {
-    case getCover(term: String, limit: String)
+    case getAlbum(term: String, limit: String)
 }
 
 extension Service: TargetType {
     
     var baseURL: URL {
-        URL(string: "https://itunes.apple.com/search?term=entity=allArtist&attribute=albumTerm")!
+        URL(string: "https://itunes.apple.com/search?")!
     }
     
     var path: String {
         switch self {
-        case .getCover(let term, let limit):
-            return "\(term)&\(limit)"
+        case .getAlbum(let term, let limit):
+            return "\(term)&entity=album&attribute=albumTerm&\(limit)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getCover:
+        case .getAlbum:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .getCover(let term, let limit):
+        case .getAlbum(let term, let limit):
             return .requestParameters(parameters: ["term" : term, "limit" : limit], encoding: URLEncoding.default)
         }
     }

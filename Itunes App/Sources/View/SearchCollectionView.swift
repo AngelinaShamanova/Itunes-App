@@ -15,23 +15,17 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     private let viewModel = ViewModel()
     
     // MARK: - Public Properties
-    var tracks = [Track]()
+    var tracks = [Album]()
     var label = UILabel()
+    var searchTextArray = [String]()
     var activityIndicator = UIActivityIndicatorView()
-//    var activityLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "LOADING"
-//        label.font = UIFont.systemFont(ofSize: 14)
-//        label.textColor = .lightGray
-//        label.textAlignment = .center
-//        return label
-//    }()
     let searchController = UISearchController(searchResultsController: nil )
     
     //MARK: - Override funcs
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+//        AppData.shared().storage.searchText?.removeAll()
     }
     
     // MARK: - Collection View Data Source
@@ -49,13 +43,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     //MARK: - Collection View Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cellName = tracks[indexPath.item]
-        guard let image = cellName.artworkUrl100 else { return }
+        let configureCell = tracks[indexPath.item]
+        guard let image = configureCell.artworkUrl100 else { return }
         let vc = DetailViewController()
-        vc.artistName.text = cellName.artistName
-        vc.collectionName.text = cellName.collectionName
+        vc.artistName.text = configureCell.artistName
+        vc.collectionName.text = configureCell.collectionName
         vc.imageView.loadImage(url: URL(string: image))
-        modalPresentationStyle = .popover
+        modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     
@@ -74,16 +68,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         view.addSubview(label)
-//        view.addSubview(activityLabel)
-//        activityLabel.isHidden = true
         setupSearchBar()
         label.text = "Please enter search term above"
         label.snp.makeConstraints { make in
             make.center.equalTo(view)
         }
-//        activityLabel.snp.makeConstraints { make in
-//            make.center.equalTo(view)
-//        }
     }
     
     private func setupSearchBar() {
@@ -97,27 +86,34 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         self.label.isHidden = true
-        
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-            
             self.activityIndicator = self.initLoading()
-//            self.activityLabel.isHidden = false
-            
-            self.viewModel.getCoverTracks(term: searchText, limit: "10") { data in
+            self.viewModel.getAlbums(term: searchText, limit: "10") { data in
                 if !data.results.isEmpty {
+                    self.searchTextArray.append(searchText)
+                    AppData.shared().storage.searchText = self.searchTextArray
+                    
                     print("[!] RESULTS DATA: \(data.results)")
                     self.tracks = data.results
                     self.collectionView.reloadData()
+                    self.activityIndicator.stopAnimating()
                 } else {
                     print("[!] RESULTS DATA ARE EMPTY")
+                    self.activityIndicator.stopAnimating()
                 }
                 self.activityIndicator.stopAnimating()
-//                self.activityLabel.isHidden = true
+                
+                
+                
             }
         })
+        
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        activityIndicator.stopAnimating()
     }
 }
 
