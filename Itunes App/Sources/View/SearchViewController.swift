@@ -10,7 +10,7 @@ import UIKit
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Private Properties
-    private var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
     private var timer: Timer?
     private let albumViewModel = AlbumViewModel()
     
@@ -18,8 +18,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var album = [Album]()
     var label = UILabel()
     var searchTextArray = [String]()
+    var collectionsArray = [String]()
+    var imagesArray = [String]()
     var activityIndicator = UIActivityIndicatorView()
     let searchController = UISearchController(searchResultsController: nil)
+    let historySearch = HistorySearchViewController()
     
     //MARK: - Override funcs
     override func viewDidLoad() {
@@ -74,6 +77,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         label.snp.makeConstraints { make in
             make.center.equalTo(view)
         }
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
     }
     
     private func setupSearchBar() {
@@ -87,6 +93,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        var indexPath: IndexPath? {
+                return collectionView?.indexPath(for: UICollectionViewCell())
+            }
+        
         self.label.isHidden = true
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
@@ -95,7 +106,14 @@ extension SearchViewController: UISearchBarDelegate {
                 if !data.results.isEmpty {
                     self?.searchTextArray.append(searchText)
                     AppData.shared().storage.searchText = self?.searchTextArray
+                    self?.collectionsArray.append(data.results[indexPath?.row ?? 0].collectionName ?? "")
+                    AppData.shared().storage.collectionNames = self?.collectionsArray
+                    self?.imagesArray.append(data.results[indexPath?.row ?? 0].artworkUrl100 ?? "")
+                    AppData.shared().storage.images = self?.imagesArray
                     self?.album = data.results
+                    print("DATA COLLECTIONS: ", AppData.shared().storage.collectionNames)
+                    print("DATA IMAGES: ", AppData.shared().storage.images)
+//                    self?.historySearch.data = data.results
                     self?.collectionView.reloadData()
                 } else {
                 }

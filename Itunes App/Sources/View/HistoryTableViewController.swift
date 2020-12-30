@@ -32,4 +32,10 @@ class HistoryTableViewController: UITableViewController {
         cell.textLabel?.text = AppData.shared().storage.searchText?[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = HistorySearchViewController()
+        self.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
 }

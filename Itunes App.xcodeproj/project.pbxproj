@@ -13,6 +13,7 @@
 		FA06850A259730CA000A6FE5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA068509259730CA000A6FE5 /* UIViewExtension.swift */; };
 		FA2BAED32597783E002A3903 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2BAED22597783E002A3903 /* DetailViewController.swift */; };
 		FA34F051259A81200064C8C0 /* UserDefaultsAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34F050259A81200064C8C0 /* UserDefaultsAppStorage.swift */; };
+		FA4B4EC6259CF2C700F663E6 /* HistorySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B4EC5259CF2C700F663E6 /* HistorySearchViewController.swift */; };
 		FA5B86C52596998600D96656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5B86C42596998600D96656 /* Assets.xcassets */; };
 		FA5B86E12596AE0900D96656 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B86E02596AE0900D96656 /* TrackCell.swift */; };
 		FA5B86F52596BE7200D96656 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B86F42596BE7200D96656 /* NetworkService.swift */; };
@@ -24,7 +25,7 @@
 		FAD6D3002596835B004BDDAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D2FF2596835B004BDDAF /* MainViewController.swift */; };
 		FAD6D30825968360004BDDAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD6D30625968360004BDDAF /* LaunchScreen.storyboard */; };
 		FAD6D3162596861C004BDDAF /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D3152596861C004BDDAF /* HistoryTableViewController.swift */; };
-		FAD6D3192596868D004BDDAF /* SearchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D3182596868D004BDDAF /* SearchCollectionView.swift */; };
+		FAD6D3192596868D004BDDAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6D3182596868D004BDDAF /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		FA068509259730CA000A6FE5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA2BAED22597783E002A3903 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FA34F050259A81200064C8C0 /* UserDefaultsAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAppStorage.swift; sourceTree = "<group>"; };
+		FA4B4EC5259CF2C700F663E6 /* HistorySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySearchViewController.swift; sourceTree = "<group>"; };
 		FA5B86C42596998600D96656 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA5B86E02596AE0900D96656 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		FA5B86F42596BE7200D96656 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -49,7 +51,7 @@
 		FAD6D30725968360004BDDAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAD6D30925968360004BDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD6D3152596861C004BDDAF /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
-		FAD6D3182596868D004BDDAF /* SearchCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionView.swift; sourceTree = "<group>"; };
+		FAD6D3182596868D004BDDAF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +97,11 @@
 			isa = PBXGroup;
 			children = (
 				FAD6D2FF2596835B004BDDAF /* MainViewController.swift */,
-				FAD6D3182596868D004BDDAF /* SearchCollectionView.swift */,
+				FAD6D3182596868D004BDDAF /* SearchViewController.swift */,
 				FA2BAED22597783E002A3903 /* DetailViewController.swift */,
 				FAA1C17E259BDB7600ACB59F /* Subview */,
 				FAD6D3152596861C004BDDAF /* HistoryTableViewController.swift */,
+				FA4B4EC5259CF2C700F663E6 /* HistorySearchViewController.swift */,
 				FA5B86E42596AFD900D96656 /* Cells */,
 				FA5C32E42598CBBB00DE298B /* Custom View */,
 			);
@@ -326,9 +329,10 @@
 				FA5B86F82596C26100D96656 /* AlbumModel.swift in Sources */,
 				FAD6D2FC2596835B004BDDAF /* AppDelegate.swift in Sources */,
 				FA06850725973086000A6FE5 /* UIViewControllerExtension.swift in Sources */,
+				FA4B4EC6259CF2C700F663E6 /* HistorySearchViewController.swift in Sources */,
 				FAD6D3162596861C004BDDAF /* HistoryTableViewController.swift in Sources */,
 				FAA1C148259B73E100ACB59F /* TrackModel.swift in Sources */,
-				FAD6D3192596868D004BDDAF /* SearchCollectionView.swift in Sources */,
+				FAD6D3192596868D004BDDAF /* SearchViewController.swift in Sources */,
 				FA06850325972A2B000A6FE5 /* AlbumViewModel.swift in Sources */,
 				FA5B86F52596BE7200D96656 /* NetworkService.swift in Sources */,
 				FA34F051259A81200064C8C0 /* UserDefaultsAppStorage.swift in Sources */,

@@ -20,6 +20,22 @@ class UserDefaultsAppStorage {
             UserDefaults.standard.set(newValue, forKey: #function)
         }
     }
+    var collectionNames: [String]? {
+        get {
+            UserDefaults.standard.stringArray(forKey: #function)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: #function)
+        }
+    }
+    var images: [String]? {
+        get {
+            UserDefaults.standard.stringArray(forKey: #function)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: #function)
+        }
+    }
 }
 
 class AppData: NSObject {
