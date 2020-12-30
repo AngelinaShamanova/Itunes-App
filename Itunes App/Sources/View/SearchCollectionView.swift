@@ -45,15 +45,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         let configureCell = album[indexPath.item]
         guard let image = configureCell.artworkUrl100 else { return }
         let vc = DetailViewController()
-        vc.artistName.text = configureCell.artistName
-        vc.collectionName.text = configureCell.collectionName
-        vc.imageView.loadImage(url: URL(string: image))
+        vc.headerView.collectionName.text = configureCell.collectionName
+        vc.headerView.artistName.text = configureCell.artistName
+        vc.headerView.imageView.loadImage(url: URL(string: image))
         vc.collectionId = configureCell.collectionId
         vc.country = configureCell.country
         vc.trackCount = configureCell.trackCount
         navigationController?.pushViewController(vc, animated: true)
-//        modalPresentationStyle = .fullScreen
-//        present(vc, animated: true, completion: nil)
     }
     
     //MARK: - Private funcs

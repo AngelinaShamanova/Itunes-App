@@ -14,4 +14,5 @@ struct TrackModel: Decodable {
 
 struct Track: Decodable {
     let trackName: String?
+    let collectionName: String?
 }
