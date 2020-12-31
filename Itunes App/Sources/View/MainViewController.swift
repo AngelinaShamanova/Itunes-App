@@ -25,10 +25,6 @@ class MainViewController: UITabBarController {
         ]
     }
     
-    //MARK: - Private funcs
-    private func configureUI() {
-    }
-    
     private func generateViewController(rootViewController: UIViewController, image: UIImage, title: String) -> UIViewController {
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         navigationVC.tabBarItem.image = image

@@ -38,7 +38,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.cellId, for: indexPath) as! TrackCell
         guard let trackImage = album[indexPath.item].artworkUrl100 else { return cell }
-        cell.collectionName.text = album[indexPath.row].collectionName
+        cell.collectionName.text = album[indexPath.item].collectionName
         cell.imageView.loadImage(url: URL(string: trackImage))
         return cell
     }
@@ -106,13 +106,13 @@ extension SearchViewController: UISearchBarDelegate {
                 if !data.results.isEmpty {
                     self?.searchTextArray.append(searchText)
                     AppData.shared().storage.searchText = self?.searchTextArray
-                    self?.collectionsArray.append(data.results[indexPath?.row ?? 0].collectionName ?? "")
+                    data.results.map({ (result) in
+                        self?.collectionsArray.append(result.collectionName ?? "")
+                        self?.imagesArray.append(result.artworkUrl100 ?? "")
+                    })
                     AppData.shared().storage.collectionNames = self?.collectionsArray
-                    self?.imagesArray.append(data.results[indexPath?.row ?? 0].artworkUrl100 ?? "")
                     AppData.shared().storage.images = self?.imagesArray
                     self?.album = data.results
-                    print("DATA COLLECTIONS: ", AppData.shared().storage.collectionNames)
-                    print("DATA IMAGES: ", AppData.shared().storage.images)
 //                    self?.historySearch.data = data.results
                     self?.collectionView.reloadData()
                 } else {

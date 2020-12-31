@@ -10,6 +10,7 @@ import UIKit
 class HistorySearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var collectionView: UICollectionView!
+    var storage = AppData.shared().storage
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +46,8 @@ class HistorySearchViewController: UIViewController, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.cellId, for: indexPath) as! TrackCell
-        guard let name = AppData.shared().storage.collectionNames?[indexPath.item] else { return cell }
-        guard let image = AppData.shared().storage.images?[indexPath.item] else { return cell }
-        cell.collectionName.text = name
-        cell.imageView.loadImage(url: URL(string: image))
+        cell.collectionName.text = storage.collectionNames?[indexPath.item]
+        cell.imageView.loadImage(url: URL(string: storage.images?[indexPath.item] ?? ""))
         return cell
     }
     
