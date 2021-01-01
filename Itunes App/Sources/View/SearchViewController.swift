@@ -103,16 +103,15 @@ extension SearchViewController: UISearchBarDelegate {
             self.activityIndicator = self.initLoading()
             self.albumViewModel.getAlbums(term: searchText, limit: "10") { [weak self] data in
                 if !data.results.isEmpty {
-                    let searchHistoryDB = SearchHistoryDB()
-                    DispatchQueue.main.async {
-                        try! self?.realm.write {
-                            searchHistoryDB.searchText.append(contentsOf: searchText)
-                            let history = History()
-                            history.collectionName.append(data.results[indexPath?.item ?? 0].collectionName ?? "")
-                            history.imageUrl.append(data.results[indexPath?.item ?? 0].artworkUrl100 ?? "")
-                        }
-                    }
                     self?.album = data.results
+                    let searchHistory = SearchHistoryDB()
+                    searchHistory.searchText = searchText
+                    let history = History()
+                    history.collectionName = data.results[indexPath?.item ?? 0].collectionName ?? ""
+                    history.imageUrl = data.results[indexPath?.item ?? 0].artworkUrl100 ?? ""
+                    DispatchQueue.main.async {
+                        StorageManager.saveSearchHistory(searchHistory, history)
+                    }
                     self?.collectionView.reloadData()
                 } else {
                 }
@@ -125,5 +124,6 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         activityIndicator.stopAnimating()
     }
+    
 }
 

@@ -26,7 +26,6 @@ class HistoryTableViewController: UITableViewController {
     }
     
     // MARK: - Table View Data Source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         searchHistoryDB.count > 0 ? (searchHistoryDB.count) : 0
     }
@@ -42,5 +41,16 @@ class HistoryTableViewController: UITableViewController {
         let vc = SearchHistoryViewController()
         self.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    // MARK: - Table View Delegate
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let searchHistory = searchHistoryDB[indexPath.row]
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { _, _ in
+            StorageManager.deleteSearchHistory(searchHistory)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return [deleteAction]
     }
 }

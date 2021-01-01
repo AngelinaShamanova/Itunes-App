@@ -20,6 +20,7 @@ class SearchHistoryViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         configureUI()
         searchHistoryDB = realm.objects(SearchHistoryDB.self)
+        print("REALM OBJECTS: ", realm.objects(SearchHistoryDB.self))
     }
     
     private func configureUI() {
@@ -51,13 +52,9 @@ class SearchHistoryViewController: UIViewController, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.cellId, for: indexPath) as! TrackCell
-        
-        for _ in searchHistoryDB {
             let history = History()
             cell.collectionName.text = history.collectionName
             cell.imageView.loadImage(url: URL(string: history.imageUrl))
-        }
-        
         return cell
     }
     

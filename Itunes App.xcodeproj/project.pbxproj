@@ -12,6 +12,7 @@
 		FA06850725973086000A6FE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06850625973086000A6FE5 /* UIViewControllerExtension.swift */; };
 		FA06850A259730CA000A6FE5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA068509259730CA000A6FE5 /* UIViewExtension.swift */; };
 		FA2BAED32597783E002A3903 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2BAED22597783E002A3903 /* DetailViewController.swift */; };
+		FA3CB2D1259F32C1002A0D96 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CB2D0259F32C1002A0D96 /* StorageManager.swift */; };
 		FA4B4EC6259CF2C700F663E6 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B4EC5259CF2C700F663E6 /* SearchHistoryViewController.swift */; };
 		FA5B86C52596998600D96656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5B86C42596998600D96656 /* Assets.xcassets */; };
 		FA5B86E12596AE0900D96656 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B86E02596AE0900D96656 /* TrackCell.swift */; };
@@ -36,6 +37,7 @@
 		FA06850625973086000A6FE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		FA068509259730CA000A6FE5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA2BAED22597783E002A3903 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FA3CB2D0259F32C1002A0D96 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		FA4B4EC5259CF2C700F663E6 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
 		FA5B86C42596998600D96656 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA5B86E02596AE0900D96656 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				FAFD1043259E406E00871AF7 /* SearchHistoryDB.swift */,
+				FA3CB2D0259F32C1002A0D96 /* StorageManager.swift */,
 			);
 			path = "Realm DB";
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3CB2D1259F32C1002A0D96 /* StorageManager.swift in Sources */,
 				FAA1C17C259BDB6F00ACB59F /* TableHeaderView.swift in Sources */,
 				FA2BAED32597783E002A3903 /* DetailViewController.swift in Sources */,
 				FA06850A259730CA000A6FE5 /* UIViewExtension.swift in Sources */,
