@@ -60,8 +60,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     private func configureUI() {
         view.backgroundColor = .white
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 200, height: UIScreen.main.bounds.width - 200)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 230, height: UIScreen.main.bounds.width - 230)
         layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.white
@@ -88,7 +88,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
 }
 
-//MARK: - UISearchBarDelegate
+    //MARK: - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -106,15 +106,11 @@ extension SearchViewController: UISearchBarDelegate {
                     self?.album = data.results
                     let searchHistory = SearchHistoryDB()
                     searchHistory.searchText = searchText
-                    let history = History()
-                    history.collectionName = data.results[indexPath?.item ?? 0].collectionName ?? ""
-                    history.imageUrl = data.results[indexPath?.item ?? 0].artworkUrl100 ?? ""
                     DispatchQueue.main.async {
-                        StorageManager.saveSearchHistory(searchHistory, history)
+                        StorageManager.saveSearchHistory(searchHistory)
                     }
                     self?.collectionView.reloadData()
-                } else {
-                }
+                } 
                 self?.activityIndicator.stopAnimating()
             }
         })

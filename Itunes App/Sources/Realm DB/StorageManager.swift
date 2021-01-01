@@ -7,20 +7,16 @@
 
 import RealmSwift
 
-//let realm = try! Realm()
-
 class StorageManager {
-    static func saveSearchHistory(_ searchHistory: SearchHistoryDB, _ history: History) {
+    static func saveSearchHistory(_ searchHistory: SearchHistoryDB) {
         try! realm.write {
             realm.add(searchHistory)
-            searchHistory.history.append(history)
         }
     }
     static func deleteSearchHistory(_ searchHistory: SearchHistoryDB) {
         try! realm.write {
-            let search = searchHistory.history
+            let search = searchHistory
             realm.delete(search)
-            realm.delete(searchHistory)
         }
     }
 }

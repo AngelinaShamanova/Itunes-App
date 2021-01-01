@@ -48,7 +48,8 @@ class TrackCell: UICollectionViewCell {
             make.centerX.equalTo(self)
         }
         collectionName.snp.makeConstraints { make in
-            make.bottom.equalTo(self).offset(-10)
+            make.top.equalTo(imageView.snp.bottom).offset(5)
+            make.bottom.equalTo(self).offset(-5)
             make.leading.equalTo(self).offset(2)
             make.trailing.equalTo(self).offset(-2)
             make.height.equalTo(60)

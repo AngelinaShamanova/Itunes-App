@@ -9,10 +9,4 @@ import RealmSwift
 
 class SearchHistoryDB: Object {
     @objc dynamic var searchText = ""
-    let history = List<History>()
-}
-
-class History: Object {
-    @objc dynamic var collectionName = ""
-    @objc dynamic var imageUrl = ""
 }
