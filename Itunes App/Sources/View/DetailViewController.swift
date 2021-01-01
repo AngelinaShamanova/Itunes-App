@@ -27,11 +27,6 @@ class DetailViewController: UIViewController {
         configureUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        activityIndicator = initLoading()
-    }
-    
     //MARK: - Private funcs
     private func configureUI() {
         view.backgroundColor = .white
@@ -42,6 +37,7 @@ class DetailViewController: UIViewController {
         tableView.isHidden = true
         tableView.tableHeaderView = headerView
         layoutConstraints()
+        activityIndicator = initLoading()
     }
     
     private func layoutConstraints() {

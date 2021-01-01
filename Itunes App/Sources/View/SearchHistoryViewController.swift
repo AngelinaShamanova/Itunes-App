@@ -1,20 +1,25 @@
 //
-//  HistorySearchViewController.swift
+//  SearchHistoryViewController.swift
 //  Itunes App
 //
 //  Created by Angelina on 30.12.2020.
 //
 
 import UIKit
+import RealmSwift
 
-class HistorySearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+let realm = try! Realm()
+
+class SearchHistoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    var searchHistoryDB: Results<SearchHistoryDB>!
     
     var collectionView: UICollectionView!
-    var storage = AppData.shared().storage
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        searchHistoryDB = realm.objects(SearchHistoryDB.self)
     }
     
     private func configureUI() {
@@ -41,15 +46,19 @@ class HistorySearchViewController: UIViewController, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return searchHistoryDB.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.cellId, for: indexPath) as! TrackCell
-        cell.collectionName.text = storage.collectionNames?[indexPath.item]
-        cell.imageView.loadImage(url: URL(string: storage.images?[indexPath.item] ?? ""))
+        
+        for _ in searchHistoryDB {
+            let history = History()
+            cell.collectionName.text = history.collectionName
+            cell.imageView.loadImage(url: URL(string: history.imageUrl))
+        }
+        
         return cell
     }
     
-
 }

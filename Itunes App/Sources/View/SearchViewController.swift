@@ -6,23 +6,22 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Private Properties
-    var collectionView: UICollectionView!
     private var timer: Timer?
     private let albumViewModel = AlbumViewModel()
     
     // MARK: - Public Properties
+    let realm = try! Realm()
+    let searchController = UISearchController(searchResultsController: nil)
+    let historySearch = SearchHistoryViewController()
     var album = [Album]()
     var label = UILabel()
-    var searchTextArray = [String]()
-    var collectionsArray = [String]()
-    var imagesArray = [String]()
     var activityIndicator = UIActivityIndicatorView()
-    let searchController = UISearchController(searchResultsController: nil)
-    let historySearch = HistorySearchViewController()
+    var collectionView: UICollectionView!
     
     //MARK: - Override funcs
     override func viewDidLoad() {
@@ -95,8 +94,8 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         var indexPath: IndexPath? {
-                return collectionView?.indexPath(for: UICollectionViewCell())
-            }
+            return collectionView?.indexPath(for: UICollectionViewCell())
+        }
         
         self.label.isHidden = true
         timer?.invalidate()
@@ -104,16 +103,16 @@ extension SearchViewController: UISearchBarDelegate {
             self.activityIndicator = self.initLoading()
             self.albumViewModel.getAlbums(term: searchText, limit: "10") { [weak self] data in
                 if !data.results.isEmpty {
-                    self?.searchTextArray.append(searchText)
-                    AppData.shared().storage.searchText = self?.searchTextArray
-                    data.results.map({ (result) in
-                        self?.collectionsArray.append(result.collectionName ?? "")
-                        self?.imagesArray.append(result.artworkUrl100 ?? "")
-                    })
-                    AppData.shared().storage.collectionNames = self?.collectionsArray
-                    AppData.shared().storage.images = self?.imagesArray
+                    let searchHistoryDB = SearchHistoryDB()
+                    DispatchQueue.main.async {
+                        try! self?.realm.write {
+                            searchHistoryDB.searchText.append(contentsOf: searchText)
+                            let history = History()
+                            history.collectionName.append(data.results[indexPath?.item ?? 0].collectionName ?? "")
+                            history.imageUrl.append(data.results[indexPath?.item ?? 0].artworkUrl100 ?? "")
+                        }
+                    }
                     self?.album = data.results
-//                    self?.historySearch.data = data.results
                     self?.collectionView.reloadData()
                 } else {
                 }
